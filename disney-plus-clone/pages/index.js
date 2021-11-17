@@ -10,8 +10,6 @@ export const getStaticProps = async () => {
       "Authorization" : `Bearer ${process.env.REACT_APP_GRAPHCMS_APIKEY}`
     }
   })
-  console.log('check:',`${process.env.REACT_APP_GRAPHCMS_URL}`);
-  console.log('check2:',`${process.env.REACT_APP_GRAPHCMS_APIKEY}`);
 
   const videosQuery = gql`
     query {
@@ -82,6 +80,7 @@ const Home = ({videos, account}) => {
           <img src={randomVideo(videos).thumbnail.url} alt={randomVideo(videos).title} />
         </div>
         <div className="video-feed"></div>
+          {/* <a href='#disney'><div className='franchise' id='disney'></div></a> */}
           <Section genre={'Recommended'} videos={unSeenVideos(videos)} />
           <Section genre={'Classic'} videos={filterVideos(videos, 'classic')}/>
           <Section genre={'Thriller'} videos={filterVideos(videos, 'thriller')}/>

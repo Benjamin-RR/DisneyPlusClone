@@ -1,6 +1,6 @@
 import Card from './Card';
 
-// for seperating all videos into different genres
+// for seperating all videos into different sections by genres (or not seen used for recommended)
 const Section = ({genre, videos}) => {
     return(
         <div className={'section'}>

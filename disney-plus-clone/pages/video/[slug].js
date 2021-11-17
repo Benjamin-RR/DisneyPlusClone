@@ -45,7 +45,17 @@ export const getServerSideProps = async (pageContext) => {
             video
         }
     }
+}
 
+// this function will change a video to seen for the current signed on user.
+const changeToSeen = async (slug) => {
+    await fetch('/api/changeToSeen', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ slug })
+    })
 }
 
 // for display info of video to be watched, and actual video including controls.
@@ -59,10 +69,14 @@ const Video = ({video}) => {
                     <div className='info'>
                         <p>{video.tags.join(', ')}</p>
                         <p>{video.description}</p>
-                        <a href='/'>go back</a>
+                        <button className='button'>
+                            <a href='/'>go back</a>
+                        </button>
+                        
                         <button
                             className={'video-overlay'}
                             onClick={()=>{
+                                changeToSeen(video.slug);
                                 watching ? setWatching(false) : setWatching(true);
                             }}
                         >PLAY</button>
